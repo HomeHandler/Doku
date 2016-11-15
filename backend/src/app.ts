@@ -1,7 +1,11 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import {DocumentsApi} from "./api/documents.api";
+import {DocumentsController} from "./controllers/documents.controller";
 import * as cors from "cors";
+import {DocumentsService} from "./services/documents.service";
+import {DocumentsMongoRepository} from "./repositories/documents.repository";
+import * as mongoose from "mongoose";
+import {Promise} from "es6-promise";
 
 // Bootstrap express application
 let app = express();
@@ -9,6 +13,7 @@ let app = express();
 // Default configuration data
 let config = {
     port: 3000,
+    mongoUrl: "mongodb://127.0.0.1:27017/doku",
     cors: {
         origin: [
             "http://localhost:8080"
@@ -24,14 +29,17 @@ let config = {
 main();
 
 function main() {
-    // Turn on CORS to support client requests from foreign domains
+    // set mongoose promise to es6 promise
+    (<any>mongoose).Promise = Promise;
+
     app.use(cors(config.cors));
-    // Add json body parser to pipeline
     app.use(bodyParser.json());
-    // attach users api to /users endpoint
-    app.use("/documents", DocumentsApi());
-    // attach occupations api to /occupations endpoint
-    //app.use("/occupations", OccupationsApi());
+
+    // initialize documents
+    let documentRepo = new DocumentsMongoRepository(config.mongoUrl);
+    let documentService = new DocumentsService(documentRepo);
+    app.use("/documents", new DocumentsController(documentService).Router);
+
     // last but not least add ErrorHandlerMiddleware. This should be added LAST!
     //app.use(ErrorHandlerMiddleware());
     // start listening for requests

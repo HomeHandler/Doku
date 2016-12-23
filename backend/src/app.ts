@@ -5,7 +5,6 @@ import * as cors from "cors";
 import {DocumentsService} from "./services/documents.service";
 import {DocumentsMongoRepository} from "./repositories/documents.repository";
 import * as mongoose from "mongoose";
-import {Promise} from "es6-promise";
 
 // Bootstrap express application
 let app = express();

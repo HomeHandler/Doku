@@ -1,4 +1,4 @@
-export class Document{
+export class Document {
     public Id: string;
     public Name: string;
     public Added: Date;

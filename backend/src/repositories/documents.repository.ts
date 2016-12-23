@@ -1,7 +1,6 @@
 import {Document} from "../models/document";
-import {DocumentModel} from "./document.model";
+import {IDocumentModel, DocumentModel} from "./document.model";
 import * as mongoose from "mongoose";
-import { Promise } from "es6-promise";
 
 export interface IDocumentsRepository {
     GetDocuments(): Promise<Document[]>;
@@ -17,17 +16,24 @@ export class DocumentsMongoRepository implements IDocumentsRepository {
         });
     }
 
-    Add = (document: Document) => {
+    public Add = (document: Document) => {
         return DocumentModel.create({
-            name: document.Name
+            name: document.Name,
+            expires: document.Expires,
+            added: document.Added
         });
     };
 
-    GetDocuments = (): Promise<Document[]> => {
-        return DocumentModel.find({}).then(res => {
-            return res.map(d => <Document>{
-                Name: d.name
-            });
+    public GetDocuments = async (): Promise<Document[]> =>{
+        let documentModels = await DocumentModel.find({});
+
+        return documentModels.map(documentModel => {
+            return {
+                Id: documentModel._id,
+                Name: documentModel.name,
+                Expires: documentModel.expires,
+                Added: documentModel.added
+            };
         });
     };
 }

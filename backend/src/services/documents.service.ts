@@ -1,6 +1,5 @@
 import {Document} from "../models/document";
 import {IDocumentsRepository} from "../repositories/documents.repository";
-import {Promise} from "es6-promise";
 
 export interface IDocumentsService {
     GetDocuments(): Promise<Document[]>;
@@ -11,11 +10,11 @@ export class DocumentsService implements IDocumentsService{
     constructor(private documentRepository: IDocumentsRepository){
     }
 
-    Add = (document: Document) => {
+    public Add = (document: Document) => {
         return this.documentRepository.Add(document);
     };
 
-    GetDocuments = (): Promise<Document[]> => {
+    public GetDocuments = () => {
         return this.documentRepository.GetDocuments();
     };
 }

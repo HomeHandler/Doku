@@ -1,4 +1,24 @@
 <h1>DOKU</h1>
-<ul>
-    <li *ngFor="let document of documents">{{document.Name}}</li>
-</ul>
+<div>
+    Type to search: <input type="text" [formControl]="query"/>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Expires in</th>
+            <th>Expires at</th>
+            <th>Added</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let document of documents">
+            <td [innerText]="document.Id"></td>
+            <td [innerText]="document.Name"></td>
+            <td [innerText]="document.Expires || '-'"></td>
+            <td [innerText]="document.Expires || '-'"></td>
+            <td [innerText]="document.Added | date : 'yyyy.MM.dd'"></td>
+        </tr>
+    </tbody>
+</table>

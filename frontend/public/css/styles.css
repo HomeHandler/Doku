@@ -2,3 +2,15 @@ body {
     background: #0147A7;
     color: #fff;
 }
+
+table {
+    margin-top: 20px;
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+table tr td,
+table tr th {
+    border: 1px solid white;
+    padding: 5px;
+}

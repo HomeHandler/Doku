@@ -7,8 +7,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Expires in</th>
-            <th>Expires at</th>
+            <th>Expires</th>
             <th>Added</th>
         </tr>
     </thead>
@@ -16,8 +15,7 @@
         <tr *ngFor="let document of documents">
             <td [innerText]="document.Id"></td>
             <td [innerText]="document.Name"></td>
-            <td [innerText]="document.Expires || '-'"></td>
-            <td [innerText]="document.Expires || '-'"></td>
+            <td [innerText]="document.Expires ? (document.Expires | timeAgo) : '-'" [title]="document.Expires ? (document.Expires | date: 'yyyy.MM.dd HH.mm') : ''"></td>
             <td [innerText]="document.Added | date : 'yyyy.MM.dd'"></td>
         </tr>
     </tbody>

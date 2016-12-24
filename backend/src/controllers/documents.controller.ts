@@ -25,7 +25,7 @@ export class DocumentsController {
     private AddDocument = async (request: Request, response: Response) => {
         let document: Document = {
             Id: null,
-            Expires: null,
+            Expires: new Date(Date.now() + 3746),
             Name: request.params.name.toString(),
             Added: new Date()
         };

@@ -7,6 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
+import { MaterialModule } from '@angular/material';
+import { Ng2MaterialModule } from "ng2-material";
 
 const appRoutes: Routes = [
     { path: 'list', component: ListComponent },
@@ -21,7 +23,9 @@ const appRoutes: Routes = [
         HttpModule,
         JsonpModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        MaterialModule.forRoot(),
+        Ng2MaterialModule,
     ],
     declarations: [
         AppComponent,

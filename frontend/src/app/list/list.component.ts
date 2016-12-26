@@ -24,8 +24,8 @@ export class ListComponent implements OnInit {
 
     private getDocuments = () => {
         return this.http.get(this.heroesUrl)
-            .map<IDocument[]>((res: Response) => {
-                return res.json();
+            .map((res: Response) => {
+                return <IDocument[]>res.json();
             })
             .toPromise()
             .then(documents => {

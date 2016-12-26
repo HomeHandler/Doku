@@ -1,18 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {FormControl} from '@angular/forms';
-
-import '../../../public/css/styles.css';
 import '../rxjs-operators';
-
-interface IDocument {
-    Name: string;
-}
+import {IDocument} from '../models/document';
 
 @Component({
-    selector: 'my-app',
-    templateUrl: './list.component.html',
-    styleUrls: ['./list.component.css']
+    templateUrl: './list.component.html'
 })
 export class ListComponent implements OnInit {
     private heroesUrl = 'http://localhost:3000/documents';  // URL to web API

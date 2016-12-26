@@ -1,4 +1,4 @@
-<h1>DOKU</h1>
+<h1>List</h1>
 <div>
     Type to search: <input type="text" [formControl]="query"/>
 </div>
@@ -7,6 +7,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Keywords</th>
             <th>Expires</th>
             <th>Added</th>
         </tr>
@@ -15,6 +16,7 @@
         <tr *ngFor="let document of documents">
             <td [innerText]="document.Id"></td>
             <td [innerText]="document.Name"></td>
+            <td [innerText]="document.Keywords.join(',')"></td>
             <td [innerText]="document.Expires ? (document.Expires | timeAgo) : '-'" [title]="document.Expires ? (document.Expires | date: 'yyyy.MM.dd HH.mm') : ''"></td>
             <td [innerText]="document.Added | date : 'yyyy.MM.dd'"></td>
         </tr>

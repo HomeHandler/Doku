@@ -20,6 +20,7 @@ export class DocumentsMongoRepository implements IDocumentsRepository {
         return DocumentModel.create({
             name: document.Name,
             expires: document.Expires,
+            keywords: document.Keywords,
             added: document.Added
         });
     };
@@ -32,6 +33,7 @@ export class DocumentsMongoRepository implements IDocumentsRepository {
                 Id: documentModel._id,
                 Name: documentModel.name,
                 Expires: documentModel.expires,
+                Keywords: documentModel.keywords || [],
                 Added: documentModel.added
             };
         });

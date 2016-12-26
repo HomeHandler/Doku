@@ -1,21 +1,34 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { ListComponent } from './list/list.component';
 import { TimeAgoPipe } from './shared/time-ago.pipe';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
+import { ListComponent } from './list/list.component';
+import { EditComponent } from './edit/edit.component';
+
+const appRoutes: Routes = [
+    { path: 'list', component: ListComponent },
+    { path: 'edit', component: EditComponent},
+    { path: '', redirectTo: 'list', pathMatch: 'full'},
+    { path: '**', redirectTo: '', pathMatch: 'full' }
+];
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
         JsonpModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterModule.forRoot(appRoutes)
     ],
     declarations: [
+        AppComponent,
         ListComponent,
+        EditComponent,
         TimeAgoPipe
     ],
-    bootstrap: [ ListComponent ]
+    bootstrap: [ AppComponent ]
 })
 export class AppModule { }

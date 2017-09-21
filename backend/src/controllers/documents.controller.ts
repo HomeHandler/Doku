@@ -1,6 +1,6 @@
-import {Router, Request, Response} from "express";
-import {Document} from "../models/document";
-import {IDocumentsService} from "../services/documents.service";
+import { Router, Request, Response } from "express";
+import { Document } from "../models/document";
+import { IDocumentsService } from "../services/documents.service";
 
 export class DocumentsController {
     private router: any;
@@ -25,9 +25,9 @@ export class DocumentsController {
     private AddDocument = async (request: Request, response: Response) => {
         let document: Document = {
             Id: null,
-            Expires: request.params.name || null,
+            Expires: null,
             Name: request.params.name.toString(),
-            Keywords: request.params.keywords,
+            Keywords: ['abc'],//request.params.keywords,
             Added: new Date()
         };
 

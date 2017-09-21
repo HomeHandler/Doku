@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {FormControl} from '@angular/forms';
-import '../rxjs-operators';
+import 'rxjs/add/operator/map'
 import {IDocument} from '../models/document';
 
 @Component({

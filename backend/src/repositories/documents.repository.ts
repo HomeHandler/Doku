@@ -1,10 +1,10 @@
-import {Document} from "../models/document";
-import {IDocumentModel, DocumentModel} from "./document.model";
+import { Document } from "../models/document";
+import { IDocumentModel, DocumentModel } from "./document.model";
 import * as mongoose from "mongoose";
 
 export interface IDocumentsRepository {
     GetDocuments(): Promise<Document[]>;
-    Add(document: Document): Promise<void>;
+    Add(document: Document): Promise<IDocumentModel>;
 }
 
 export class DocumentsMongoRepository implements IDocumentsRepository {
@@ -25,7 +25,7 @@ export class DocumentsMongoRepository implements IDocumentsRepository {
         });
     };
 
-    public GetDocuments = async (): Promise<Document[]> =>{
+    public GetDocuments = async (): Promise<Document[]> => {
         let documentModels = await DocumentModel.find({});
 
         return documentModels.map(documentModel => {

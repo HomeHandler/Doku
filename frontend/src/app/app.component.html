@@ -1,14 +1,13 @@
 <md-toolbar color="primary">
-    <span>Doku</span>
+  <span>Doku</span>
 </md-toolbar>
 
-<md-content>
-    <md-card class="md-card-flat">
-        <a md-button color="primary" routerLink="list" [attr.md-raised-button]="router.url=='/list' ? true : null">Document List</a>
-        <a md-button color="primary" routerLink="edit" [attr.md-raised-button]="router.url=='/edit' ? true : null">Create Document</a>
-    </md-card>
-    <md-card class="md-card-flat">
-
-        <router-outlet></router-outlet>
-    </md-card>
-</md-content>
+<div>
+  <md-card class="md-card-flat">
+      <a md-button color="primary" routerLink="list" [attr.md-raised-button]="router.url=='/list' ? true : null">Document List</a>
+      <a md-button color="primary" routerLink="edit" [attr.md-raised-button]="router.url=='/edit' ? true : null">Create Document</a>
+  </md-card>
+  <md-card class="md-card-flat">
+      <router-outlet></router-outlet>
+  </md-card>
+</div>

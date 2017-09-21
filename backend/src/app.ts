@@ -1,9 +1,9 @@
 import * as express from "express";
 import * as bodyParser from "body-parser";
-import {DocumentsController} from "./controllers/documents.controller";
+import { DocumentsController } from "./controllers/documents.controller";
 import * as cors from "cors";
-import {DocumentsService} from "./services/documents.service";
-import {DocumentsMongoRepository} from "./repositories/documents.repository";
+import { DocumentsService } from "./services/documents.service";
+import { DocumentsMongoRepository } from "./repositories/documents.repository";
 import * as mongoose from "mongoose";
 
 // Bootstrap express application
@@ -15,7 +15,7 @@ let config = {
     mongoUrl: "mongodb://127.0.0.1:27017/doku",
     cors: {
         origin: [
-            "http://localhost:8080"
+            "http://localhost:4200"
         ],
         methods: [
             "GET",

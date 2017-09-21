@@ -1,11 +1,13 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import '../../public/css/styles.css';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'doku-app',
-    templateUrl: './app.component.html'
+  selector: 'doku-app',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    constructor(private router: Router) {}
+  title = 'app';
+
+  constructor(private router: Router) { }
 }

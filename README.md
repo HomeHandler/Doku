@@ -1,17 +1,15 @@
-## start mongo
+# Doku
+
+## Development
+You can start both by running the `run-dev.bat` file, or pick separately.
+### Run WebApi:
+Webapi runs on port `5000`
 ```
-docker run -p 27017:27017 mongo
+dotnet watch run
 ```
 
-## start backend
+### Run Angular app:
+Angular app runs on port `4200` and proxy config redirects `/api/` to webapi
 ```
-\backend> npm install
-\backend> npm run build
-\backend> npm run start
-```
-
-## start frontend
-```
-\frontend> npm install
-\frontend> ng serve
+ng serve --proxy-config proxy.config.json
 ```

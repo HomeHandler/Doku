@@ -1,27 +1,27 @@
-<md-card>
+<mat-card>
     <!-- <md-card-title>
         <md-input-container class="demo-full-width" placeholder="type to search" [formControl]="query"></md-input-container>
     </md-card-title>-->
-    <md-card-content>
+    <mat-card-content>
         <table>
             <thead>
                 <tr>
-                    <th class="md-text-cell">Name</th>
-                    <th class="md-text-cell">Id</th>
-                    <th class="md-text-cell">Keywords</th>
-                    <th class="md-text-cell">Expires</th>
-                    <th class="md-text-cell">Added</th>
+                    <th class="mat-text-cell">Name</th>
+                    <th class="mat-text-cell">Id</th>
+                    <th class="mat-text-cell">Keywords</th>
+                    <th class="mat-text-cell">Expires</th>
+                    <th class="mat-text-cell">Added</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let document of documents">
-                    <td class="md-text-cell" [innerText]="document.name"></td>
-                    <td class="md-text-cell" [innerText]="document.id"></td>
-                    <td class="md-text-cell" [innerText]="document.keywords.join(',') || '-'"></td>
-                    <td class="md-text-cell" [innerText]="document.expires ? (document.expires | timeAgo) : '-'" [title]="document.expires ? (document.expires | date: 'yyyy.MM.dd HH.mm') : ''"></td>
-                    <td class="md-text-cell" [innerText]="document.added | date : 'yyyy.MM.dd'"></td>
+                    <td class="mat-text-cell" [innerText]="document.name"></td>
+                    <td class="mat-text-cell" [innerText]="document.id"></td>
+                    <td class="mat-text-cell" [innerText]="document.keywords.join(',') || '-'"></td>
+                    <td class="mat-text-cell" [innerText]="document.expires ? (document.expires | timeAgo) : '-'" [title]="document.expires ? (document.expires | date: 'yyyy.MM.dd HH.mm') : ''"></td>
+                    <td class="mat-text-cell" [innerText]="document.added | date : 'yyyy.MM.dd'"></td>
                 </tr>
             </tbody>
         </table>
-    </md-card-content>
-</md-card>
+    </mat-card-content>
+</mat-card>

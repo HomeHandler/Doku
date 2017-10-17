@@ -1,0 +1,11 @@
+.edit-container {
+    width: 25%;
+}
+.edit-container > mat-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-container > mat-card-content > * {
+    width: 100%;
+}

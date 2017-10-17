@@ -13,3 +13,7 @@ Angular app runs on port `4200` and proxy config redirects `/api/` to webapi
 ```
 ng serve --proxy-config proxy.config.json
 ```
+or
+```
+npm run dev
+```

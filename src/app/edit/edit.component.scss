@@ -1,3 +1,6 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
 .edit-container {
     width: 25%;
 }
@@ -8,4 +11,14 @@
 
 .edit-container > mat-card-content > * {
     width: 100%;
+}
+
+span.category-title {
+    display: inline-block;
+    color: mat-color($mat-grey, 600);
+    padding-bottom: 5px;
+}
+
+button mat-spinner {
+    display: inline-block;
 }

@@ -1,31 +1,29 @@
-<mat-card class="edit-container">
-    <mat-card-content>
-        <mat-form-field>
-            <input matInput required placeholder="Title">
-        </mat-form-field>
-        <mat-form-field class="has-chip-list">
-            <mat-chip-list [tabIndex]="tabIndex" #chipList1 [(ngModel)]="selectedPeople">
-              <mat-chip  *ngFor="let person of people" [color]="color" [selectable]="selectable"
-                       [removable]="removable" (remove)="remove(person)">
-                {{person.name}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-              </mat-chip>
-              <input placeholder="Categories"
-                     [matChipInputFor]="chipList1"
-                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                     [matChipInputAddOnBlur]="false"
-                     (matChipInputTokenEnd)="add($event)" />
-            </mat-chip-list>
-          </mat-form-field>
-        <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="Expires">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        <mat-form-field>
-            <mat-select placeholder="Select">
-                <mat-option value="option">Option</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </mat-card-content>
-</mat-card>
+<form #createForm="ngForm" novalidate (ngSubmit)="createDocument(createForm)">
+    <mat-card class="edit-container">
+        <mat-card-content>
+            <mat-form-field>
+                <input matInput required placeholder="Name" name="name" [(ngModel)]="document.name">
+            </mat-form-field>
+            <mat-form-field class="demo-chip-list">
+                <span class="category-title">Categories</span>
+                <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let keyword of document.keywords" selected="true" removable="true" (remove)="removeKeyword(keyword)" color="accent">
+                        {{ keyword }}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="false"
+                        (matChipInputTokenEnd)="addKeyword($event)" />
+                </mat-chip-list>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Expires" name="expires" [(ngModel)]="document.expires">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="loading" (click)="createDocument(createForm)">
+                <span *ngIf="!loading">Create</span>
+                <mat-spinner *ngIf="loading" strokeWidth="2" [diameter]="30"></mat-spinner>
+            </button>
+        </mat-card-content>
+    </mat-card>
+</form>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/map'
-import { IDocument } from '../models/document';
+import { IDocument } from '../models/document.model';
 
 @Component({
     templateUrl: './list.component.html'
@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
         this.initSearch();
     }
 
-    private getDocuments = () => {
+    private getDocuments () {
         return this.http.get(this.documentUrl)
             .map((res: Response) => {
                 var doc = res.json();
@@ -34,15 +34,15 @@ export class ListComponent implements OnInit {
                 this.allDocuments = documents;
                 this.documents = documents;
             });
-    };
+    }
 
-    private initSearch = () => {
+    private initSearch() {
         this.query.valueChanges
             .debounceTime(200)
             .subscribe(newValue => {
                 this.documents = this.allDocuments.filter(d => {
-                    return d.Name.toLowerCase().trim().includes(newValue.toLowerCase().trim());
-                })
+                    return d.name.toLowerCase().trim().includes(newValue.toLowerCase().trim());
+                });
             });
     }
 }

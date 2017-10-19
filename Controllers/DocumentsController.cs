@@ -9,52 +9,47 @@ using dokuweb.Models;
 
 namespace dokuweb.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/documents")]
     public class DocumentsController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Document>), 200)]
-        public IActionResult Get()
+        private static int Id = 1;
+        private static List<Document> Documents = new List<Document>
         {
-            var docs = new List<Document>
-            {
-                new Document
+            new Document
                 {
-                    Id = "1",
+                    Id = Id++.ToString(),
                     Name = "FM transzmitter",
                     Added = new DateTime(2016,5,4),
                     Expires = null,
                     Keywords = new string[]{"auto", "garancia"}
                 }
+        };
+
+        [Route("")]
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Document>), 200)]
+        public IActionResult GetDocuments()
+        {
+            return Ok(Documents);
+        }
+
+        [Route("")]
+        [HttpPost]
+        [ProducesResponseType(200)]
+        public IActionResult CreateDocument([FromBody]DocumentCreateModel model)
+        {
+            var doc = new Document
+            {
+                Id = Id++.ToString(),
+                Name = model.Name,
+                Keywords = model.Keywords,
+                Expires = model.Expires,
+                Added = DateTime.UtcNow
             };
 
-            return Ok(docs);
-        }
+            Documents.Add(doc);
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return Ok();
         }
     }
 }

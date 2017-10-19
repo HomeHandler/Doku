@@ -7,5 +7,8 @@ namespace dokuweb.Models
 {
     public class DocumentCreateModel
     {
+        public string Name { get; set; }
+        public string[] Keywords { get; set; }
+        public DateTime? Expires { get; set; }
     }
 }

@@ -4,7 +4,8 @@ import {
     MatFormFieldModule, MatInputModule, MatSelectModule,
     MatDatepickerModule, MatNativeDateModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 
 const usedMaterialModules = [
@@ -12,7 +13,8 @@ const usedMaterialModules = [
     MatInputModule, MatSelectModule,
     MatDatepickerModule, MatNativeDateModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
 ];
 
 @NgModule({

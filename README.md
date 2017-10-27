@@ -8,12 +8,12 @@ Webapi runs on port `5000`
 dotnet watch run
 ```
 
-### Run Angular app:
-Angular app runs on port `4200` and proxy config redirects `/api/` to webapi
+### Run Angular app with proxy:
+run the watcher for frontend build
+```
+ng build --watch
+```
+or run static host on port `4200` and proxy redirect `/api/` to webapi 
 ```
 ng serve --proxy-config proxy.config.json
-```
-or
-```
-npm run dev
 ```

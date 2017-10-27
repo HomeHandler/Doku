@@ -17,10 +17,17 @@ namespace dokuweb
             BuildWebHost(args).Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseUrls("http://localhost:5000")
-                .Build();
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            var contentroot = Path.Combine(Directory.GetCurrentDirectory(), "src");
+
+            System.Console.WriteLine(contentroot.ToString());
+
+            return WebHost.CreateDefaultBuilder(args)
+                    .UseStartup<Startup>()
+                    //.UseContentRoot("src")
+                    .UseUrls("http://localhost:5000")
+                    .Build();
+        }
     }
 }

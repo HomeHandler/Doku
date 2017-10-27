@@ -22,6 +22,7 @@ node_modules
 # IDE - VS2017
 obj/
 bin/
+wwwroot/
 .vs/*
 *.user
 

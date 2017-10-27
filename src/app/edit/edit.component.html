@@ -13,7 +13,7 @@
                     </mat-chip>
                     <input [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="false"
                         (matChipInputTokenEnd)="addKeyword($event)" />
-                </mat-chip-list>
+                </mat-chip-list> 
             </mat-form-field>
             <mat-form-field>
                 <input matInput [matDatepicker]="picker" placeholder="Expires" name="expires" [(ngModel)]="document.expires">

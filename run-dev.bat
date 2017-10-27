@@ -1,2 +1,2 @@
 start dotnet watch run
-start ng serve --proxy-config proxy.config.json
+start ng build --watch

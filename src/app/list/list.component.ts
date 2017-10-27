@@ -1,48 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
-import 'rxjs/add/operator/map'
 import { IDocument } from '../models/document.model';
+import { DocumentsDataSource } from './documents-data-source';
 
 @Component({
-    templateUrl: './list.component.html'
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
     private documentUrl = '/api/documents';  // URL to web API
-    private allDocuments: IDocument[];
-    public documents: IDocument[];
+
+    public documentsSource: DocumentsDataSource;
     public query = new FormControl();
+    public displayedColumns = ['id', 'name', 'keywords', 'added', 'expires'];
 
     constructor(private http: Http) {
-        this.documents = [];
+        
     }
 
     ngOnInit() {
-        this.getDocuments();
-        this.initSearch();
+        this.documentsSource = new DocumentsDataSource(this.http);
+        //this.documentsSource.filter = "";
+        //this.getDocuments();
+        //this.initSearch();
     }
 
-    private getDocuments () {
-        return this.http.get(this.documentUrl)
-            .map((res: Response) => {
-                var doc = res.json();
-                
-                return <IDocument[]> doc;
-            })
-            .toPromise()
-            .then(documents => {
-                this.allDocuments = documents;
-                this.documents = documents;
-            });
-    }
+    // private getDocuments() {
+    //     return this.http.get(this.documentUrl)
+    //         .map((res: Response) => {
+    //             var doc = res.json();
 
-    private initSearch() {
-        this.query.valueChanges
-            .debounceTime(200)
-            .subscribe(newValue => {
-                this.documents = this.allDocuments.filter(d => {
-                    return d.name.toLowerCase().trim().includes(newValue.toLowerCase().trim());
-                });
-            });
-    }
+    //             return <IDocument[]>doc;
+    //         })
+    //         .toPromise()
+    //         .then(documents => {
+    //             this.documents = documents;
+    //         });
+    // }
+
+    // private initSearch() {
+    //     this.query.valueChanges
+    //         .debounceTime(200)
+    //         .subscribe(newValue => {
+    //             this.documents = this.allDocuments.filter(d => {
+    //                 return d.name.toLowerCase().trim().includes(newValue.toLowerCase().trim());
+    //             });
+    //         });
+    // }
 }

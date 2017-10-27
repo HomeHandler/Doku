@@ -5,7 +5,8 @@ import {
     MatDatepickerModule, MatNativeDateModule,
     MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule
 } from '@angular/material';
 
 const usedMaterialModules = [
@@ -14,7 +15,8 @@ const usedMaterialModules = [
     MatDatepickerModule, MatNativeDateModule,
     MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule
 ];
 
 @NgModule({

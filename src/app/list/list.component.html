@@ -1,27 +1,48 @@
 <mat-card>
-    <!-- <md-card-title>
-        <md-input-container class="demo-full-width" placeholder="type to search" [formControl]="query"></md-input-container>
-    </md-card-title>-->
     <mat-card-content>
-        <table>
-            <thead>
-                <tr>
-                    <th class="mat-text-cell">Name</th>
-                    <th class="mat-text-cell">Id</th>
-                    <th class="mat-text-cell">Keywords</th>
-                    <th class="mat-text-cell">Expires</th>
-                    <th class="mat-text-cell">Added</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let document of documents">
-                    <td class="mat-text-cell" [innerText]="document.name"></td>
-                    <td class="mat-text-cell" [innerText]="document.id"></td>
-                    <td class="mat-text-cell" [innerText]="document.keywords.join(',') || '-'"></td>
-                    <td class="mat-text-cell" [innerText]="document.expires ? (document.expires | timeAgo) : '-'" [title]="document.expires ? (document.expires | date: 'yyyy.MM.dd HH.mm') : ''"></td>
-                    <td class="mat-text-cell" [innerText]="document.added | date : 'yyyy.MM.dd'"></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-container">
+            <div class="table-header">
+                <mat-form-field floatPlaceholder="never">
+                    <input matInput #filter placeholder="Filter documents">
+                </mat-form-field>
+            </div>
+
+            <mat-table #table [dataSource]="documentsSource">
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                </ng-container>
+
+                <!-- Keywords Column -->
+                <ng-container matColumnDef="keywords">
+                    <mat-header-cell *matHeaderCellDef> Keywords </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{ row.keywords.join(',') || '-'}} </mat-cell>
+                </ng-container>
+
+                <!-- Added Column -->
+                <ng-container matColumnDef="added">
+                    <mat-header-cell *matHeaderCellDef> Added </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{ row.added | date : 'yyyy.MM.dd' }} </mat-cell>
+                </ng-container>
+
+                <!-- Expires Column -->
+                <ng-container matColumnDef="expires">
+                    <mat-header-cell *matHeaderCellDef> Expires </mat-header-cell>
+                    <mat-cell *matCellDef="let row" [title]="row.expires ? (row.expires | date: 'yyyy.MM.dd HH.mm') : ''"> {{ row.expires ? (row.expires | timeAgo) : '-'}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+        </div>
+
     </mat-card-content>
 </mat-card>

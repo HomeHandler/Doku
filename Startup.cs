@@ -46,12 +46,12 @@ namespace dokuweb
                     !Path.HasExtension(context.Request.Path.Value) &&
                     !context.Request.Path.Value.StartsWith("/api/"))
                 {
+                    context.Request.Path = "/index.html";
                     await next();
                 }
             });
 
             app.UseMvcWithDefaultRoute();
-
             app.UseDefaultFiles();
             app.UseStaticFiles();
         }
